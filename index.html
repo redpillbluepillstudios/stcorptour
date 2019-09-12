@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ServiceTitan Corporate Tour in VR</title>
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <meta name="mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta charset="utf-8" />
+    
+    
+    
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<style type="text/css">
+		html, body {
+		  margin: 0;
+		  padding: 0;
+		  width: 100%;
+		  height: 100%;
+		  font-family: "Roboto", Arial, sans-serif;
+		}
+		#vrview {
+		  display: block;
+		  border: none;
+		  margin: 0;
+		  padding: 0;
+		  border: 0;
+		  width: 100%;
+		  height: 100%;
+		}
+		iframe {
+		  display: block;
+		  border: none;
+		  margin: 0;
+		  padding: 0;
+		  border: 0;
+		  width: 100%;
+		  height: 100%;
+		}
+		div.mn_preload{ display: none;
+					position: absolute;
+					left: 0px;
+					top: 0px;
+					width: 100%;
+					height: 100%;
+					overflow: hidden;
+					text-align: center;
+					background-image: url(dist/img/slant-header.svg);
+					background-color: #FFFFFF;
+					background-size: cover; }
+		img.logo { position:absolute;
+					left: 35%;
+					top: 10%;
+					width: 30%; }
+		div.loading { position:absolute;
+					top: 50%;
+					width: 100%;
+					height: 30%;
+					text-align: center; }
+		div.error-limitations {
+			display: none;
+			position: absolute;
+			top: 30%;
+			width: 50%;
+			margin: auto;
+			/* height: 30%; */
+			text-align: center;
+			left: 25%;
+			background: white;
+			border: 1px solid grey;
+			padding: 5px;
+		}
+		div.progress{ position: relative;
+					margin: 0 auto;
+					width: 60%;
+					height: 20px;
+					border-radius: 5px;
+					border: 1px solid black;}
+		div.meter{ 	position: absolute;
+					left: 0px;
+					width: 0px;
+					height: 100%;
+					background-color: #1664C0; }
+		div.emform{ position: absolute;
+					top: 50%;
+					width: 100%;
+					height: 10%;
+					text-align: center; }
+		input{
+			font-family: "Roboto", Arial, sans-serif;
+			font-size:large;
+			border-bottom:1px solid #ddd;
+			border-left:1px solid #c3c3c3;
+			border-right:1px solid #c3c3c3;
+			border-top:1px solid #7c7c7c;
+			color:#333;
+			margin:5px;
+			padding:2px 5px;
+		}
+		.btn {
+		  position: relative;
+		  display: block;
+		  margin: 30px auto;
+		  padding: 0;
+		  overflow: hidden;
+		  border-width: 0;
+		  outline: none;
+		  border-radius: 2px;
+		  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+		  background-color: #0fa0db;
+		  color: #ecf0f1;
+		  transition: background-color .3s;
+		 }
+		.btn:hover, .btn:focus {
+		  background-color: #0d80d4;
+		}
+		.btn span {
+		  display: block;
+		  padding: 12px 24px;
+		}
+	</style>
+	<script>
+		function keyPress(e){
+		  var x = e || window.event;
+		  var key = (x.keyCode || x.which);
+			if(key == 13 || key == 3){
+				Iris.emailEntered();
+			}
+		}
+	</script>
+  </head>
+  <body>
+	<div id="mn_prompt" class="mn_preload">
+		<img class="logo" src="dist/img/watermark.png"></img>
+		<div id="emform"  class="emform">
+			<div id="entertxt" class="entertxt">Please enter your email to ensure your results are correctly submitted</div>
+			<br clear="all" />
+			<input id="element_email" name="element_email" type="text" size="35" maxlength="255" value="" onkeypress= "keyPress()"/>
+			<br clear="all" />
+			<button class="btn" onclick="Iris.emailEntered();" /><span>OK</span></button>
+		</div>
+	</div>
+	<div id="mn_preload" class="mn_preload">
+		<img class="logo" src="dist/img/watermark.png"></img>
+		<div id="loading" class="loading">
+			<div id="progress" class="progress">
+				<div id="meter" class="meter"></div>
+			</div>
+		</div>
+		<div id="error-limitations" class="error-limitations">
+		<h2>Due to its technical limitations, this device is incapable of running 4K VR content. Please try HD content, or a different device.</h2>
+		</div>
+	</div>
+    <div id="vrview"></div>
+    <script src="dist/vrview.js"></script>
+    <script src="dist/iris.js"></script>
+    
+	<script>
+	window.Iris = new Iris( 'scenario.json', 'run', null, true );
+	</script>
+  </body>
+</html>
